@@ -1,0 +1,14 @@
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+span.menu {
+ margin-right: 7px;
+}
+
+#mainSideMenu .ant-menu-submenu-arrow {
+  right: inherit;
+  left: 16px;
+}

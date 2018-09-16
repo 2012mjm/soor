@@ -1,0 +1,124 @@
+.container {
+  background-color: #f0f2f5;
+  background-image: url('bg.svg');
+  width: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: relative;
+}
+
+.header {
+  padding: 0 12px 0 0;
+  background: #002140;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  position: relative;
+  color: #FFF;
+}
+
+.left {
+  float: left;
+  height: 100%;
+  margin-left: 8px;
+}
+.left .action {
+  cursor: pointer;
+  padding: 0 12px;
+  display: inline-block;
+  transition: all .3s;
+  height: 100%;
+}
+.left .action > i {
+    font-size: 16px;
+    vertical-align: middle;
+  }
+.left .action > i:global(.ant-popover-open),
+.left .action > i:hover {
+   background: #1890ff;
+}
+
+.account .avatar {
+  margin: 20px 8px 20px 0;
+  color: #1890ff; /*@primary-color;*/
+  background: rgba(255, 255, 255, .85);
+  vertical-align: middle;
+}
+
+.menu :global(.anticon) {
+  margin-right: 8px;
+  float: right;
+}
+.menu :global(.ant-dropdown-menu-item) {
+  width: 160px;
+}
+
+.globalFooter {
+  padding: 0 16px;
+  margin: 48px 0 24px 0;
+  text-align: center;
+}
+.globalFooter .copyright {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.main-content {
+  margin: 10px 3%;
+}
+.list-row .ant-row {
+    margin-bottom: 10px;
+}
+.list-row .ant-row strong {
+  display: inline-table;
+}
+.sub-title {
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+.button-box {
+  margin-top: 30px;
+}
+
+.btn-left {
+  margin-right: 8px;
+  float: left;
+}
+.btn-block {
+  width: 100%;
+}
+.search-left {
+  margin-right: 8px;
+  float: left;
+  max-width: 250px;
+}
+.layout-margin {
+  margin-top: 30px;
+}
+
+
+/* ant style */
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  text-align: center;
+}
+.ant-table-thead > tr > th {
+  font-weight: bold;
+}
+.ant-timeline-item-head-custom {
+  right: -13px;
+}
+.ant-timeline-item-head {
+  font-size: 18px;
+}
+.ant-timeline-item-content {
+  padding: 0 25px 0 0;
+}
+.ant-form-item {
+  margin-bottom: 8px;
+}
+.ant-table-tbody .ant-table-expanded-row td {
+  text-align: right;
+}

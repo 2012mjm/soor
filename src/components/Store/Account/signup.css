@@ -1,0 +1,44 @@
+.signup-form {
+  max-width: 300px;
+  margin-top: 30px;
+}
+.signup-form-forgot {
+  float: right;
+}
+.signup-form-button {
+  width: 100%;
+}
+
+.signup-title {
+  margin-top: 100px;
+  color: #1E7BD1;
+}
+
+.signup-form .ant-form-explain {
+  margin-right: 5px;
+  text-align: right;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-content {
+  margin-top: -16px;
+  max-width: 300px;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
+  background: #fff;
+  padding: 16px;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar {
+  border-color: #fff;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+  border-color: transparent;
+  background: transparent;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+  border-color: #fff;
+  background: #fff;
+}
