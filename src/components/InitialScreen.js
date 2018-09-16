@@ -1,27 +1,15 @@
 import React, { Component } from 'react'
-import { Layout, Button, Icon } from 'antd'
 import { connect } from 'react-redux'
+import { Grid } from '@material-ui/core'
 
 class InitialScreen extends Component {
   render () {
-    const { Content } = Layout
-    const ButtonGroup = Button.Group
     return (
-      <Layout className="container">
-        <Content type="flex" justify="space-around" align="middle">
-          <h2 className="login-title">ایرانی بخریم</h2>
-          <div className="card-container">
-            <ButtonGroup size="large">
-              <Button type="primary" href="/store">
-                <Icon type="shop" /> ورود به حساب صاحب فروشگاه
-              </Button>
-              <Button type="primary" href="/customer">
-                <Icon type="user" /> ورود به حساب مشتری
-              </Button>
-            </ButtonGroup>
-          </div>
-        </Content>
-      </Layout>
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <h2>Soorino</h2>
+        </Grid>
+      </Grid>
     )
   }
 }
