@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import configStore from "../../lib/configureStore";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
+
+import configStore from "../../lib/configureStore";
 import { loggedIn } from "../../actions/auth";
 import { setAuthorizationToken } from "../../lib/utils";
 import MainAdminScreen from "../Admin/Main/MainScreen";
-// import AdminLoginScreen from '../Admin/Login/LoginScreen'
+
+import AdminLoginScreen from '../Admin/Login/LoginScreen'
 import InitialScreen from "../InitialScreen";
 
 import { create } from "jss";
@@ -52,7 +54,7 @@ class App extends Component {
             <MuiThemeProvider theme={theme}>
               <div>
                 <Route path="/" exact component={InitialScreen} />
-                {/* <Route path="/admin/login" exact component={AdminLoginScreen} /> */}
+                <Route path="/admin/login" exact component={AdminLoginScreen} />
                 <Route path="/admin" component={MainAdminScreen} />
               </div>
             </MuiThemeProvider>
