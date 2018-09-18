@@ -15,6 +15,7 @@
     "history": "^4.7.2",
     "jalali-moment": "^3.0.8",
     "jsonwebtoken": "^8.3.0",
+    "jss-rtl": "^0.2.3",
     "moment-jalaali": "^0.6.0",
     "node-json-transform": "^1.0.16",
     "prop-types": "^15.6.0",

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Route } from "react-router-dom";
 import configStore from "../../lib/configureStore";
 import { Provider } from "react-redux";
@@ -9,7 +8,22 @@ import { setAuthorizationToken } from "../../lib/utils";
 import MainAdminScreen from "../Admin/Main/MainScreen";
 // import AdminLoginScreen from '../Admin/Login/LoginScreen'
 import InitialScreen from "../InitialScreen";
-import theme from './theme'
+
+import { create } from "jss";
+import rtl from "jss-rtl";
+import JssProvider from "react-jss/lib/JssProvider";
+import {
+  createGenerateClassName,
+  jssPreset,
+  MuiThemeProvider
+} from "@material-ui/core/styles";
+import theme from "./theme";
+
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+
+// Custom Material-UI class name generator.
+const generateClassName = createGenerateClassName();
 
 class App extends Component {
   constructor(props) {
@@ -34,13 +48,15 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <div>
-              <Route path="/" exact component={InitialScreen} />
-              {/* <Route path="/admin/login" exact component={AdminLoginScreen} /> */}
-              <Route path="/admin" component={MainAdminScreen} />
-            </div>
-          </MuiThemeProvider>
+          <JssProvider jss={jss} generateClassName={generateClassName}>
+            <MuiThemeProvider theme={theme}>
+              <div>
+                <Route path="/" exact component={InitialScreen} />
+                {/* <Route path="/admin/login" exact component={AdminLoginScreen} /> */}
+                <Route path="/admin" component={MainAdminScreen} />
+              </div>
+            </MuiThemeProvider>
+          </JssProvider>
         </ConnectedRouter>
       </Provider>
     );
