@@ -1,96 +1,72 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  Paper,
-  Typography,
-  InputLabel,
-  Input,
-  Button,
-  FormControl,
-  Slide
-} from "@material-ui/core/";
-import FingerprintIcon from "@material-ui/icons/FingerprintOutlined";
+import { Paper, Typography } from "@material-ui/core/";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import styles from "./styles";
 
-// import LoginForm from './LoginForm'
 import { managerLoginThunk } from "../../../thunks/auth";
-import Notification from "../../../lib/Notification";
 import { errorHandler } from "../../../lib/utils";
 
+import Notification from "../../../lib/Notification";
+import LoginForm from "./LoginForm";
 import FreeLayout from "../common/FreeLayout/FreeLayout";
 
 class AdminLoginScreen extends Component {
   constructor(props) {
     super(props);
-    this.adminLoginSubmit = this.adminLoginSubmit.bind(this);
+    this.state = {
+      notify: {
+        open: false,
+        message: null,
+        variant: null
+      }
+    };
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  adminLoginSubmit(e, form) {
+  onSubmit(e, values) {
     e.preventDefault();
 
-    form.validateFields((err, values) => {
-      if (err) return undefined;
-
-      this.props
-        .dispatch(managerLoginThunk(values))
-        .then(res => {
-          this.props.history.push("/admin");
-          return (
-            <Notification message="ورود با موفقیت انجام شد" variant="success" />
-          );
-        })
-        .catch(e => {
-          return <Notification message={errorHandler(e)} variant="error" />;
+    this.props
+      .dispatch(managerLoginThunk(values))
+      .then(res => {
+        this.props.history.push("/admin");
+        this.setState({
+          notify: { open: true, message: res.messages[0], variant: "error" }
         });
-    });
+        return true;
+      })
+      .catch(e => {
+        this.setState({
+          notify: { open: true, message: errorHandler(e), variant: "error" }
+        });
+        return false;
+      });
   }
 
   render() {
     const { classes } = this.props;
+    const { notify } = this.state;
     return (
-      <FreeLayout>
-        <Slide
-          direction="down"
-          in={true}
-          mountOnEnter
-          unmountOnExit
-          timeout={500}
-        >
+      <Fragment>
+        <FreeLayout>
           <Paper className={classes.paper}>
             <div className={classes.title}>
               <Typography className={classes.headline} variant="headline">
                 پنل مدیریت
               </Typography>
             </div>
-            <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">نام کاربری</InputLabel>
-                <Input id="email" name="email" autoComplete="email" autoFocus />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">کلمه عبور</InputLabel>
-                <Input
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                color="primary"
-                className={classes.submit}
-              >
-                <FingerprintIcon />
-                ورود
-              </Button>
-            </form>
+            <LoginForm onSubmit={this.onSubmit} />
           </Paper>
-        </Slide>
-      </FreeLayout>
+        </FreeLayout>
+        <Notification
+          message={notify.message}
+          variant={notify.variant}
+          open={notify.open}
+        />
+      </Fragment>
     );
   }
 }
@@ -100,4 +76,10 @@ AdminLoginScreen.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(AdminLoginScreen);
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(AdminLoginScreen)
+);

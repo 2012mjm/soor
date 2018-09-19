@@ -1,35 +1,99 @@
-import React, { Component } from 'react'
-import './login.css'
-import { Form, Icon, Input, Button } from 'antd'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import {
+  InputLabel,
+  Input,
+  Button,
+  FormControl,
+  InputAdornment
+} from "@material-ui/core/";
+import FingerprintIcon from "@material-ui/icons/FingerprintOutlined";
+import LockIcon from "@material-ui/icons/LockOutlined";
+import FaceIcon from "@material-ui/icons/FaceOutlined";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+import styles from "./styles";
 
 class AdminLoginForm extends Component {
-  render () {
-    const FormItem = Form.Item
-    const { getFieldDecorator } = this.props.form
+  constructor(props) {
+    super(props);
+    this.state = {
+      values: {
+        username: "",
+        password: ""
+      }
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ values: { ...this.state.values, [name]: value } });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps) {
+      this.setState({
+        values: { ...this.state.values, ...nextProps.values }
+      });
+    }
+  }
+
+  render() {
+    const { classes, onSubmit } = this.props;
+    const { values } = this.state;
     return (
-      <Form className="login-form" onSubmit={(e) => this.props.onSubmit(e, this.props.form)}>
-        <FormItem>
-          {getFieldDecorator('username', {
-            rules: [{required: true, message: 'این فیلد الزامی است'}]
-          })(
-            <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,0.25)'}} />} placeholder="نام کاربری" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{required: true, message: 'این فیلد الزامی است'}]
-          })(
-            <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,0.25)'}} />} type="password" placeholder="کلمه عبور" />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            ورود
-          </Button>
-        </FormItem>
-      </Form>
-    )
+      <form className={classes.form} onSubmit={e => onSubmit(e, values)}>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="username">نام کاربری</InputLabel>
+          <Input
+            id="username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            onChange={this.onChange}
+            value={values.username}
+            endAdornment={
+              <InputAdornment position="end">
+                <FaceIcon className={classes.inputIcon} />
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel htmlFor="password">کلمه عبور</InputLabel>
+          <Input
+            name="password"
+            type="password"
+            id="password"
+            onChange={this.onChange}
+            value={values.password}
+            autoComplete="current-password"
+            endAdornment={
+              <InputAdornment position="end">
+                <LockIcon className={classes.inputIcon} />
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <Button
+          type="submit"
+          fullWidth
+          color="primary"
+          className={classes.submit}
+        >
+          <FingerprintIcon />{" "}ورود
+        </Button>
+      </form>
+    );
   }
 }
 
-export default Form.create()(AdminLoginForm)
+AdminLoginForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func
+};
+
+export default withStyles(styles, { withTheme: true })(AdminLoginForm);

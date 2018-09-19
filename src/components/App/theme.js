@@ -5,6 +5,12 @@ const theme = createMuiTheme({
   direction: "rtl",
   palette: {
     primary: blue
+  },
+  typography: {
+    fontSize: 12,
+    button: {
+      fontSize: "1rem"
+    }
   }
 });
 

@@ -135,8 +135,9 @@ class Notification extends React.Component {
 Notification.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool,
-  variant: PropTypes.variant,
-  message: PropTypes.message
+  variant: PropTypes.string,
+  message: PropTypes.string,
+  open: PropTypes.bool
 };
 
 export default withStyles(styles2)(Notification);

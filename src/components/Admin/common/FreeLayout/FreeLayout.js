@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { Slide } from "@material-ui/core/";
 import styles from "./styles";
 
 class FreeLayout extends Component {
@@ -10,7 +11,15 @@ class FreeLayout extends Component {
       <div className={classes.layout}>
         <div className={classes.mask}>
           <main className={classes.container}>
-            {children}
+            <Slide
+              direction="down"
+              in={true}
+              mountOnEnter
+              unmountOnExit
+              timeout={500}
+            >
+              {children}
+            </Slide>
           </main>
         </div>
       </div>

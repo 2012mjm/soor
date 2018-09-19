@@ -1,7 +1,7 @@
-const SERVER_DOMAIN = 'localhost'
+const SERVER_DOMAIN = 'api.ibapp.ir'
 const PROTO = 'http'
 
-export const API_URL = `${PROTO}://${SERVER_DOMAIN}:1312/v1/`
+export const API_URL = `${PROTO}://${SERVER_DOMAIN}/v1/`
 // export const WS_URL = `ws://${SERVER_DOMAIN}:3005`
 // export const FILES_BASE_URL = `${PROTO}://${SERVER_DOMAIN}:3001/`
 

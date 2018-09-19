@@ -33,6 +33,9 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3
+  },
+  inputIcon: {
+    color: "rgba(0, 0, 0, 0.54)"
   }
 });
 
